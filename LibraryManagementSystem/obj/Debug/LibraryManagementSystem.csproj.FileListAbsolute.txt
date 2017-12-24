@@ -1,1 +1,6 @@
 C:\D-Drive Backup\Personal\Materials\C# Algorithms\LibraryManagementSystem\LibraryManagementSystem\bin\Debug\LibraryManagementSystem.exe.config
+C:\D-Drive Backup\Personal\Materials\C# Algorithms\LibraryManagementSystem\LibraryManagementSystem\obj\Debug\LibraryManagementSystem.csprojResolveAssemblyReference.cache
+C:\D-Drive Backup\Personal\Materials\C# Algorithms\LibraryManagementSystem\LibraryManagementSystem\bin\Debug\LibraryManagementSystem.exe
+C:\D-Drive Backup\Personal\Materials\C# Algorithms\LibraryManagementSystem\LibraryManagementSystem\bin\Debug\LibraryManagementSystem.pdb
+C:\D-Drive Backup\Personal\Materials\C# Algorithms\LibraryManagementSystem\LibraryManagementSystem\obj\Debug\LibraryManagementSystem.exe
+C:\D-Drive Backup\Personal\Materials\C# Algorithms\LibraryManagementSystem\LibraryManagementSystem\obj\Debug\LibraryManagementSystem.pdb
