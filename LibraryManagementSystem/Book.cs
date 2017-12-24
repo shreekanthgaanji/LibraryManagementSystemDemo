@@ -18,7 +18,7 @@ namespace LibraryManagementSystem
 
     }
 
-    class Lenders
+    class Lend
     {
         public int LendersId { get; set; }
         public int userId { get; set; }

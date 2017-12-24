@@ -11,13 +11,14 @@ namespace LibraryManagementSystem
     {
         public static List<Book> _books = new List<Book>();
         public static List<User> _users = new List<User>();
-        public static List<Lenders> _lendersData = new List<Lenders>();
+        public static List<Lend> _lendersData = new List<Lend>();
         static void Main(string[] args)
         {
             Console.Clear();
             SeedData();
             while (true)
             {
+                Console.WriteLine();
                 Console.WriteLine(" Choose Right option ");
                 Console.WriteLine(" 1 -Add book ");
                 Console.WriteLine(" 2 -Return book ");
@@ -31,6 +32,7 @@ namespace LibraryManagementSystem
                 if (!result)
                 {
                     Console.WriteLine(" Invalid Input,Please try again ");
+                    Console.WriteLine();
                 }
                 else
                 {
@@ -46,8 +48,8 @@ namespace LibraryManagementSystem
                         default: Console.WriteLine(" Invalid Input;Please try again "); break;
                     }
                 }
-              }
             }
+        }
 
         private static void DisplayUser(User user)
         {
@@ -61,6 +63,7 @@ namespace LibraryManagementSystem
             Console.WriteLine("Author : " + book.AuthorName);
             Console.WriteLine("Quantity : " + book.quantity);
             Console.WriteLine("Catogry : " + book.Catagory);
+            Console.WriteLine();
         }
 
         private static User GetUser()
@@ -112,24 +115,26 @@ namespace LibraryManagementSystem
 
         private static void LendBook()
         {
-            Console.WriteLine("Enter the book title ");
+            Console.WriteLine(" Enter the book title ");
             string title = Console.ReadLine();
             User user = GetUser();
             Book book = _books.Where(b => b.Title.Equals(title)).FirstOrDefault<Book>(); //Assuming title of the book is unique
             if (book == null || user == null)
             {
-                Console.WriteLine("No such book exists");
+                Console.WriteLine(" No such book exists");
+                Console.WriteLine();
             }
             else
             {
-                _lendersData.Add(new LibraryManagementSystem.Lenders()
+                _lendersData.Add(new LibraryManagementSystem.Lend()
                 {
                     LendersId = _lendersData.Count + 1,
                     BookId = book.BookId,
                     userId = user.UserId
                 });
+                Console.WriteLine(" Book Borrowed Successfully");
+                Console.WriteLine();
             }
-            Console.WriteLine(" Book Borrowed Successfully");
         }
 
         private static void AddUser()
@@ -147,7 +152,25 @@ namespace LibraryManagementSystem
 
         private static void ReturnBook()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Enter the book title ");
+            string title = Console.ReadLine();
+            Book book = _books.Where(b => b.Title.Equals(title)).FirstOrDefault<Book>(); //Assuming title of the book is unique
+            
+            if (book == null)
+            {
+                Console.WriteLine("No such book exists ");
+            }
+            else
+            {
+                User user = GetUser();
+
+                if ((book != null && user != null))
+                {
+                    Lend lend = _lendersData.Where(l => l.BookId == book.BookId && l.userId == user.UserId).FirstOrDefault<Lend>();
+                    _lendersData.Remove(lend);
+                    Console.WriteLine("Book returned successfully");
+                }
+            }
         }
 
         private static void AddBook()
