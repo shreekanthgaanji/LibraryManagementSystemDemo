@@ -18,7 +18,7 @@ namespace LibraryManagementSystem
             SeedData();
             while (true)
             {
-                Console.WriteLine(" Choose right option ");
+                Console.WriteLine(" Choose Right option ");
                 Console.WriteLine(" 1 -Add book ");
                 Console.WriteLine(" 2 -Return book ");
                 Console.WriteLine(" 3 -Add user ");
@@ -26,21 +26,28 @@ namespace LibraryManagementSystem
                 Console.WriteLine(" 5 -Search book ");
                 Console.WriteLine(" 6 -Search user ");
                 Console.WriteLine(" 7 - Exit ");
-
-                switch (Convert.ToInt16(Console.ReadLine()))
+                int number;
+                bool result = Int32.TryParse(Console.ReadLine(), out number);
+                if (!result)
                 {
-                    case 1: AddBook(); break;
-                    case 2: ReturnBook(); break;
-                    case 3: AddUser(); break;
-                    case 4: LendBook(); break;
-                    case 5: SearchBook(); break;
-                    case 6: SearchUser(); break;
-                    case 7: Environment.Exit(0); break;
+                    Console.WriteLine(" Invalid Input,Please try again ");
                 }
-
+                else
+                {
+                    switch (number)
+                    {
+                        case 1: AddBook(); break;
+                        case 2: ReturnBook(); break;
+                        case 3: AddUser(); break;
+                        case 4: LendBook(); break;
+                        case 5: SearchBook(); break;
+                        case 6: SearchUser(); break;
+                        case 7: Environment.Exit(0); break;
+                        default: Console.WriteLine(" Invalid Input;Please try again "); break;
+                    }
+                }
+              }
             }
-
-        }
 
         private static void DisplayUser(User user)
         {
@@ -109,7 +116,7 @@ namespace LibraryManagementSystem
             string title = Console.ReadLine();
             User user = GetUser();
             Book book = _books.Where(b => b.Title.Equals(title)).FirstOrDefault<Book>(); //Assuming title of the book is unique
-            if (book == null || user ==null)
+            if (book == null || user == null)
             {
                 Console.WriteLine("No such book exists");
             }
